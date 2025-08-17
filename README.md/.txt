@@ -1,0 +1,61 @@
+# 📖 Image Bot — Unified (Gemini / OpenAI)
+
+Generator gambar siap Adobe Stock dengan **multi-provider**:
+- Pilih **Provider**: `Gemini` / `OpenAI (ChatGPT)` / `Other`
+- **Trends**: Live (Google Trends RSS) + Future Trends (prediksi brand-safe)
+- **Kategori** + **Profesi**
+- **Pro Stock** pipeline: refine prompt, QC, 4K (Gemini), upscale, sRGB, JPEG 4:4:4
+- **Anti-Similar** persisten (aHash-64 → `data/simhashes.json`)
+- **Save to disk** per batch → `outputs/<timestamp>/` + `keywords.csv`
+- **ZIP semua hasil** (client → server)
+
+## 🔧 Requirements
+- Node.js 18+
+- Minimal satu API key:
+  - `GEMINI_API_KEY` untuk Gemini
+  - `OPENAI_API_KEY` untuk OpenAI
+- (Boleh dua-duanya aktif — tinggal pilih di UI)
+
+## ⚙️ Install
+```bash
+npm i
+# atau
+npm i express @google/genai openai rss-parser sharp archiver
+# 🔑 Environment
+
+Windows (cmd):
+
+set GEMINI_API_KEY=YOUR_GEMINI_KEY
+
+PowerShell:
+
+$Env:GEMINI_API_KEY="YOUR_GEMINI_KEY"
+
+macOS/Linux:
+
+export GEMINI_API_KEY="YOUR_GEMINI_KEY"
+
+# Cara permanen – pakai file .env
+
+Bikin file baru .env di root folder Gemini-bot/:
+
+GEMINI_API_KEY=AIzaSyxxxxxxx
+
+
+Lalu install modul dotenv:
+
+npm i dotenv
+
+
+Edit server.mjs, tambahkan di paling atas:
+
+import dotenv from "dotenv";
+dotenv.config();
+
+
+Dengan cara ini, setiap kali server dijalankan, key otomatis terbaca.
+
+# Run 
+node server.mjs
+
+Buka: http://localhost:8787

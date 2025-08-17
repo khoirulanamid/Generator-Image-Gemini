@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Gemini Image Bot — Unified (Pro Stock / Explore)</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<header>
+  <h2>📸 Gemini Image Bot — Unified</h2>
+  <div class="muted">Pro Stock (default) untuk kualitas terbaik • Explore untuk eksperimen cepat</div>
+</header>
+
+<main>
+  <div class="card">
+    <h3>Generate</h3>
+    <div class="row">
+      <div>
+        <label>Negara</label><br/>
+        <select id="region">
+          <option selected>GLOBAL</option><option>ID</option><option>US</option><option>GB</option>
+          <option>IN</option><option>JP</option><option>BR</option><option>DE</option>
+          <option>FR</option><option>CA</option><option>AU</option>
+        </select>
+      </div>
+      <div><label>Sumber tren</label><br/>
+        <select id="source"><option value="both" selected>Live + Future</option><option value="live">Live</option><option value="future">Future</option></select>
+      </div>
+      <div><label>Kategori</label><br/>
+        <select id="category">
+          <option value="">(tanpa filter)</option>
+          <option>animals</option><option>water</option><option>blue_economy</option>
+          <option>investing</option><option>business</option><option>technology</option>
+          <option>science</option><option>climate</option><option>architecture</option>
+          <option>nature</option><option>abstract</option><option>food</option><option>sports</option>
+          <option>profession_doctor</option><option>profession_engineer</option>
+          <option>profession_chef</option><option>profession_farmer</option>
+          <option>profession_investor</option><option>profession_programmer</option>
+          <option>profession_photographer</option><option>profession_teacher</option>
+        </select>
+      </div>
+      <div><label>Ambil topik</label><br/><input id="limit" type="number" min="1" max="30" value="8" style="width:90px"/></div>
+
+      <div><label>Rasio</label><br/>
+        <select id="aspect"><option value="auto" selected>Auto</option><option>1:1</option><option>3:4</option><option>4:3</option><option>9:16</option><option>16:9</option></select>
+      </div>
+      <div><label>Gambar per topik</label><br/><input id="count" type="number" min="1" max="4" value="1" style="width:90px"/></div>
+
+      <div><label>Quality</label><br/>
+        <select id="quality"><option value="pro" selected>Pro Stock (4K + QC + refine)</option><option value="explore">Explore (cepat)</option></select>
+      </div>
+      <div><label>People</label><br/><select id="people"><option value="off" selected>OFF</option><option value="on">ON</option></select></div>
+      <div><label>Upscale ≥4MP</label><br/><select id="upscale"><option value="on" selected>ON</option><option value="off">OFF</option></select></div>
+
+      <div><label>Anti-Similar</label><br/><select id="antisim"><option value="on" selected>ON</option><option value="off">OFF</option></select></div>
+      <div><label>Threshold</label><br/><input id="simth" type="number" min="0" max="20" value="6" style="width:80px"/></div>
+
+      <div style="flex:1 1 100%"><label>Tema manual (satu per baris)</label><br/><textarea id="manual" placeholder="contoh:
+desalination plant at sunrise
+macro dew drops on leaf
+hydropower microturbine in stream"></textarea></div>
+    </div>
+
+    <div class="row" style="margin-top:8px">
+      <button class="btn primary" id="btnFetch">Ambil Topik</button>
+      <button class="btn ghost" id="btnGenAll">Generate Semua</button>
+      <button class="btn ghost" id="btnReset">Reset Similarity Cache</button>
+      <button class="btn ghost" id="btnCSV">Download CSV Keywords</button>
+      <button class="btn ghost" id="btnZIP">Download ZIP Semua</button>
+      <span class="muted">/ klik Generate per kartu di bawah</span>
+    </div>
+
+    <div id="list" class="grid" style="margin-top:10px"></div>
+    <div id="sum_norm" class="muted"></div>
+  </div>
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
