@@ -1,7 +1,7 @@
 {
   "name": "gemini-bot",
-  "version": "1.1.0",
-  "description": "Stock Image Bot (Unified) — Gemini / OpenAI multi-provider",
+  "version": "1.0.0",
+  "description": "Gemini Stock Image Bot (Unified mode)",
   "type": "module",
   "scripts": {
     "start": "node server.mjs"
@@ -9,9 +9,7 @@
   "dependencies": {
     "@google/genai": "^0.3.1",
     "archiver": "^6.0.2",
-    "dotenv": "^17.2.1",
     "express": "^4.21.2",
-    "openai": "^4.104.0",
     "rss-parser": "^3.13.0",
     "sharp": "^0.33.5"
   }

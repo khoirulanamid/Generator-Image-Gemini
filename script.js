@@ -1,6 +1,3 @@
-// ===== Konfigurasi Backend =====
-const API_BASE = "https://generator-image-gemini-production.up.railway.app"; // ganti ke URL backend kamu
-
 const el = s => document.querySelector(s);
 const list = el('#list');
 
@@ -47,7 +44,7 @@ el('#btnCSV').onclick = downloadCSV;
 
 async function downloadZIP() {
   if (!window.__imagesData.length) { alert('Belum ada gambar. Generate dulu ya.'); return; }
-  const res = await fetch(`${API_BASE}/api/zip`, {
+  const res = await fetch('/api/zip', {
     method:'POST',
     headers:{'Content-Type':'application/json'},
     body: JSON.stringify({ files: window.__imagesData })
@@ -73,7 +70,7 @@ async function fetchTopics(){
   const category = el('#category').value || '';
   const limit    = Number(el('#limit').value) || 8;
 
-  const url = `${API_BASE}/api/trends?region=` + encodeURIComponent(region)
+  const url = '/api/trends?region=' + encodeURIComponent(region)
             + '&limit=' + limit + '&source=' + encodeURIComponent(source)
             + (category ? '&category=' + encodeURIComponent(category) : '');
 
@@ -135,11 +132,7 @@ async function generateUnified(items, outElAll=null){
     antiSimilar: el('#antisim').value==='on',
     simThreshold: Number(el('#simth').value)||6
   };
-  const res = await fetch(`${API_BASE}/api/generate-unified`, {
-    method:'POST',
-    headers:{'Content-Type':'application/json'},
-    body: JSON.stringify(payload)
-  });
+  const res = await fetch('/api/generate-unified', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload) });
   const data = await res.json();
   if(!data.ok){ alert(data.error||'Gagal'); return; }
 
@@ -170,7 +163,7 @@ async function generateUnified(items, outElAll=null){
 
 el('#btnFetch').onclick = async ()=>{ const items = await fetchTopics(); render(items); };
 el('#btnGenAll').onclick = async ()=>{ const items = await fetchTopics(); render(items); await generateUnified(items); };
-el('#btnReset').onclick = async ()=>{ await fetch(`${API_BASE}/api/similarity/reset`,{method:'POST'}); el('#sum_norm').textContent='Similarity cache direset.' };
+el('#btnReset').onclick = async ()=>{ await fetch('/api/similarity/reset',{method:'POST'}); el('#sum_norm').textContent='Similarity cache direset.' };
 
 // load awal
 (async()=>{ const items=await fetchTopics(); render(items); })();

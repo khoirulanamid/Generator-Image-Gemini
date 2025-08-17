@@ -9,8 +9,6 @@
  *
  * Node 18+ (ESM)
  */
-import dotenv from "dotenv";
-dotenv.config();
 import express from "express";
 import RSSParser from "rss-parser";
 import sharp from "sharp";
@@ -24,15 +22,17 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname  = path.dirname(__filename);
 
 // ------------ Config ------------
+// ⚠️ API key ditaruh langsung di kode sesuai permintaanmu
+const GEMINI_API_KEY = "AIzaSyAG4J5t6pQwntxvs6EDZs3wuiHJmO_LFqE";
+
 const PORT = process.env.PORT ? Number(process.env.PORT) : 8787;
-const DEFAULT_REGION = process.env.TRENDS_REGION || "GLOBAL";
-const GEMINI_API_KEY = AIzaSyAG4J5t6pQwntxvs6EDZs3wuiHJmO_LFqE  || "";
+const DEFAULT_REGION = "GLOBAL";
 
 // Imagen & Gemini models
-const IMAGEN_MODEL_STD      = process.env.IMAGEN_MODEL || "imagen-4.0-generate-001";
+const IMAGEN_MODEL_STD      = "imagen-4.0-generate-001";
 const IMAGEN_MODEL_FAST     = "imagen-4.0-fast-generate-001";
 const GEMINI_IMAGE_FALLBACK = "gemini-2.0-flash-preview-image-generation";
-const GEMINI_TEXT_MODEL     = process.env.GEMINI_TEXT_MODEL || "gemini-2.0-flash";
+const GEMINI_TEXT_MODEL     = "gemini-2.0-flash";
 
 const DATA_DIR     = path.join(__dirname, "data");
 const SIMHASH_FILE = path.join(DATA_DIR, "simhashes.json");
