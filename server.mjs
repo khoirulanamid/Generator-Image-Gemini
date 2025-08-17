@@ -26,7 +26,7 @@ const __dirname  = path.dirname(__filename);
 // ------------ Config ------------
 const PORT = process.env.PORT ? Number(process.env.PORT) : 8787;
 const DEFAULT_REGION = process.env.TRENDS_REGION || "GLOBAL";
-const GEMINI_API_KEY = AIzaSyAG4J5t6pQwntxvs6EDZs3wuiHJmO_LFqE || "";
+const GEMINI_API_KEY = AIzaSyAG4J5t6pQwntxvs6EDZs3wuiHJmO_LFqE  || "";
 
 // Imagen & Gemini models
 const IMAGEN_MODEL_STD      = process.env.IMAGEN_MODEL || "imagen-4.0-generate-001";
